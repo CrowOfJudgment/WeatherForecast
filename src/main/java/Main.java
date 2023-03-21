@@ -1,6 +1,5 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +10,8 @@ public class Main {
     public static void main(String[] args) throws MalformedURLException {
         System.out.println(getWeather());
         System.out.println(parseWeather(getWeather()));
+
+        //elo
     }
 
     public static JSONArray parseWeather(String response) {
