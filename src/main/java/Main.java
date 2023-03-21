@@ -1,22 +1,36 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.*;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
-        System.out.println(getWeather());
-        System.out.println(parseWeather(getWeather()));
+
+        parseWeather(getWeather());
     }
 
-    public static JSONArray parseWeather(String response) {
+    public static void parseWeather(String response) {
         JSONObject jsonObject = new JSONObject(response);
+        JSONArray timeInJSON = jsonObject.getJSONObject("hourly").getJSONArray("time");
+        JSONArray temperatureInJSON = jsonObject.getJSONObject("hourly").getJSONArray("temperature_2m");
 
+        ArrayList<String> time = new ArrayList<>();
+        ArrayList<BigDecimal> temperature = new ArrayList<>();
 
-        return jsonObject.getJSONObject("hourly").getJSONArray("time");
+        for (int i = 0; i < timeInJSON.length(); i++) {
+            time.add(timeInJSON.getString(i));
+            temperature.add(temperatureInJSON.getBigDecimal(i));
+        }
+
+        for (int i = 0; i < time.size(); i++) {
+            System.out.println(time.get(i) + ": " + temperature.get(i));
+        }
+
     }
 
     public static BigDecimal parse(String response, String key) {
