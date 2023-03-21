@@ -10,8 +10,6 @@ public class Main {
     public static void main(String[] args) throws MalformedURLException {
         System.out.println(getWeather());
         System.out.println(parseWeather(getWeather()));
-
-        //elo
     }
 
     public static JSONArray parseWeather(String response) {
