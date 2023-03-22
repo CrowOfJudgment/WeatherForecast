@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
 
-        //new Interface();
-        //parseWeather(getWeather());
+        new Interface();
+        parseWeather(getWeather());
     }
 
     public static void parseWeather(String response) {
