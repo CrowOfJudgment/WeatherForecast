@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws MalformedURLException {
 
         new Interface();
-        parseWeather(getWeather());
+        //parseWeather(getWeather());
     }
 
     public static void parseWeather(String response) {
