@@ -12,7 +12,10 @@ public class Main {
     public static void main(String[] args) throws MalformedURLException {
 
         new Interface();
-        //parseWeather(getWeather());
+//        parseWeather(getWeather());
+//        System.out.println(getCoordinates());
+//        System.out.println(getWeather());
+//        System.out.println(parse(getCoordinates(), "city"));
     }
 
     public static void parseWeather(String response) {
@@ -34,23 +37,13 @@ public class Main {
 
     }
 
-    public static BigDecimal parse(String response, String key) {
+    public static Object parse(String response, String key) {
         JSONObject jsonObject = new JSONObject(response);
-        return jsonObject.getBigDecimal(key);
-    }
-
-    public static String getAddress() throws MalformedURLException {
-        String urlString = "http://checkip.amazonaws.com/";
-        URL url = new URL(urlString);
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            return br.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return jsonObject.get(key);
     }
 
     public static String getCoordinates() throws MalformedURLException {
-        String urlString = "https://api.ip2location.io/?key=B5811BEB7619C9F27517161490E01F85&ip=" + getAddress();
+        String urlString = "http://ip-api.com/json?fields=49663" ;
         URL url = new URL(urlString);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
             return br.readLine();
@@ -61,9 +54,9 @@ public class Main {
 
     public static String getWeather() throws MalformedURLException {
         String urlString = "https://api.open-meteo.com/v1/forecast?"
-                + "latitude=" + parse(getCoordinates(), "latitude")
-                + "&longitude=" + parse(getCoordinates(), "longitude")
-                + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m";
+                + "latitude=" + parse(getCoordinates(), "lat")
+                + "&longitude=" + parse(getCoordinates(), "lon")
+                + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m" ;
         URL url = new URL(urlString);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
             return br.readLine();
