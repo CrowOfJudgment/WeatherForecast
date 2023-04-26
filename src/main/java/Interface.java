@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.net.MalformedURLException;
 
 public class Interface extends JFrame {
     ImageIcon background;
 
-    Interface() {
+    Interface() throws MalformedURLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Weatheo");
         background = new ImageIcon("background_test.jpg");
