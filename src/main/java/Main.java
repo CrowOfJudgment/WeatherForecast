@@ -4,12 +4,12 @@ public class Main {
     public static void main(String[] args) throws MalformedURLException {
 
         new Interface();
-//        Weather myWeather = new Weather();
-//        System.out.println(myWeather.getWeather());
-//        System.out.println(myWeather.currentWeather(myWeather.getWeather(), "temperature"));
-//        System.out.println(myWeather.currentWeather(myWeather.getWeather(), "windspeed"));
-//        System.out.println(Weather.parse(Weather.getCoordinates(),"city"));
+        Weather weather = Weather.getWeather();
+        Coordinates coordinates = Coordinates.getCoordinates();
+        System.out.println(weather.getCurrent());
+        System.out.println(weather.getCurrent("temperature"));
+        System.out.println(weather.getCurrent("windspeed"));
+        System.out.println(coordinates.get());
+        System.out.println(coordinates.get("city"));
     }
-
-
 }

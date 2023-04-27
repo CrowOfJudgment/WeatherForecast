@@ -11,7 +11,18 @@ import java.util.ArrayList;
 
 public class Weather {
     static JSONObject jsonObject;
-    public static void parseWeather(String response) {
+    Coordinates coordinates = Coordinates.getCoordinates();
+
+    // Singleton
+    private static final Weather WEATHER = new Weather();
+    public static Weather getWeather(){
+        return WEATHER;
+    }
+    private Weather(){
+
+    }
+
+    public static void getHourlyForecast(String response) {
         jsonObject = new JSONObject(response);
         JSONArray timeInJSON = jsonObject.getJSONObject("hourly").getJSONArray("time");
         JSONArray temperatureInJSON = jsonObject.getJSONObject("hourly").getJSONArray("temperature_2m");
@@ -29,30 +40,24 @@ public class Weather {
         }
 
     }
-    public Object currentWeather(String response, String key){
-        jsonObject = new JSONObject(response);
+
+    // returns desired key from current weather from open-meteo api
+    public Object getCurrent(String key) throws MalformedURLException {
+        jsonObject = new JSONObject(getAll());
         return jsonObject.getJSONObject("current_weather").get(key);
     }
 
-    public static Object parse(String response, String key) {
-        jsonObject = new JSONObject(response);
-        return jsonObject.get(key);
+    // returns all current weather keys from open-meteo api
+    public Object getCurrent() throws MalformedURLException {
+        jsonObject = new JSONObject(getAll());
+        return jsonObject.getJSONObject("current_weather");
     }
 
-    public static String getCoordinates() throws MalformedURLException {
-        String urlString = "http://ip-api.com/json?fields=49663" ;
-        URL url = new URL(urlString);
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            return br.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getWeather() throws MalformedURLException {
+    // returns all keys from open-meteo api
+    public String getAll() throws MalformedURLException {
         String urlString = "https://api.open-meteo.com/v1/forecast?"
-                + "latitude=" + parse(getCoordinates(), "lat")
-                + "&longitude=" + parse(getCoordinates(), "lon")
+                + "latitude=" + coordinates.get("lat")
+                + "&longitude=" + coordinates.get("lon")
                 + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m" ;
         URL url = new URL(urlString);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
