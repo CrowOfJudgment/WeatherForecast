@@ -8,6 +8,7 @@ public class Main {
 //        System.out.println(myWeather.getWeather());
 //        System.out.println(myWeather.currentWeather(myWeather.getWeather(), "temperature"));
 //        System.out.println(myWeather.currentWeather(myWeather.getWeather(), "windspeed"));
+//        System.out.println(Weather.parse(Weather.getCoordinates(),"city"));
     }
 
 
