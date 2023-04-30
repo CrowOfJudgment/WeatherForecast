@@ -6,6 +6,5 @@ public class DayTilePanel extends JPanel {
         setPreferredSize(new Dimension(110, 400));
 //        setOpaque(false); // set to false makes the background transparent
 
-
     }
 }
