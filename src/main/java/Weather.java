@@ -21,9 +21,8 @@ public class Weather {
     private Weather(){
 
     }
-
-    public static void getHourlyForecast(String response) {
-        jsonObject = new JSONObject(response);
+    public void getHourlyForecast() throws MalformedURLException {
+        jsonObject = new JSONObject(getAll());
         JSONArray timeInJSON = jsonObject.getJSONObject("hourly").getJSONArray("time");
         JSONArray temperatureInJSON = jsonObject.getJSONObject("hourly").getJSONArray("temperature_2m");
 
@@ -36,21 +35,21 @@ public class Weather {
         }
 
         for (int i = 0; i < time.size(); i++) {
-            System.out.println(time.get(i) + ": " + temperature.get(i));
+            System.out.println(i+1 + ". " + time.get(i) + ": " + temperature.get(i));
         }
 
     }
 
     // returns desired key from current weather from open-meteo api
-    public Object getCurrent(String key) throws MalformedURLException {
+    public String getCurrent(String key) throws MalformedURLException {
         jsonObject = new JSONObject(getAll());
-        return jsonObject.getJSONObject("current_weather").get(key);
+        return jsonObject.getJSONObject("current_weather").get(key).toString();
     }
 
     // returns all current weather keys from open-meteo api
-    public Object getCurrent() throws MalformedURLException {
+    public String getCurrent() throws MalformedURLException {
         jsonObject = new JSONObject(getAll());
-        return jsonObject.getJSONObject("current_weather");
+        return jsonObject.getJSONObject("current_weather").toString();
     }
 
     // returns all keys from open-meteo api

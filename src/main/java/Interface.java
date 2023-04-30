@@ -22,7 +22,6 @@ public class Interface extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-
     }
 
 }

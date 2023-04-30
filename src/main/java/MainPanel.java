@@ -13,9 +13,12 @@ public class MainPanel extends JPanel {
         setOpaque(false);
 
         add(new CurrentWeatherPanel());
-        add(new TilePanel());
-        add(new TilePanel());
-        add(new TilePanel());
-        add(new TilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
+        add(new DayTilePanel());
     }
 }

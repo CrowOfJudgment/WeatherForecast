@@ -19,14 +19,14 @@ public class Coordinates {
     }
 
     // returns desired key from ip-api
-    public Object get(String key) throws MalformedURLException {
+    public String get(String key) throws MalformedURLException {
         jsonObject = new JSONObject(get());
-        return jsonObject.get(key);
+        return jsonObject.get(key).toString();
     }
 
     // returns all keys from ip-api
     public String get() throws MalformedURLException {
-        String urlString = "http://ip-api.com/json?fields=49663" ;
+        String urlString = "http://ip-api.com/json?fields=49663";
         URL url = new URL(urlString);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
             return br.readLine();
