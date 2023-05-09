@@ -7,3 +7,5 @@ One is for the geolocation of the device: https://ip-api.com/docs/api:json,
 the other provides data about the weather in specified location: https://open-meteo.com/en/docs.
 
 The goal is to create a simple user interface that will show basic information about weather in user's location.
+
+In future I would like to add additional options for user, like switching location to another city.
